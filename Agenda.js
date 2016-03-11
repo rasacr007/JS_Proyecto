@@ -12,11 +12,9 @@ var Agenda = function() {
     function findMaxPosition(){
       var  result=0;
       ContactsArray.forEach(function(item,i,arrayobj){
-          if (item.Position>result){
             result = item.Position;
-          };
       });
-        return result;
+        return result+1;
     };
     function findPos (pos){
       var  result=-1
@@ -81,6 +79,5 @@ var Agenda = function() {
      }
   };
 };
-
 
 
