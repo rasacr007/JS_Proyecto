@@ -1,67 +1,86 @@
+console.log('Hello everyone!');
 
 var Agenda = function() {
     var ContactsArray =[];
+    var message_recNotFound ='Registro no encontrado'
 
     function addContacts(name, lastName, email,phone){
-        ContactsArray.push({Name:name,LastName:lastName, Email:email, Phone:phone});
+        var pos= findMaxPosition();
+        ContactsArray.push({Position: pos, Name:name,LastName:lastName, Email:email, Phone:phone});
     };
-    
-    function finPos (name){
-      var pos=-1,
-          result=-1
+
+    function findMaxPosition(){
+      var  result=0;
       ContactsArray.forEach(function(item,i,arrayobj){
-          if (item.Name)==name){
-            result = pos;
-          }else{
-              pos+=1;
-          }
+          if (item.Position>result){
+            result = item.Position;
+          };
+      });
+        return result;
+    };
+    function findPos (pos){
+      var  result=-1
+      ContactsArray.forEach(function(item,i,arrayobj){
+          if (item.Position==pos){
+            result = i;
+          };
       });
         return result;
     };
 
-    function updateContact(name, lastName, email,phone){
-       var pos = ContactsArray.indexOf(name);
-          ContactsArray[pos].Name=name;
-         ContactsArray[pos].LastName=lastName;
-         ContactsArray[pos].Email=email;
-         ContactsArray[pos].Phone=phone;
+    function updateContact(pos,name, lastName, email,phone){
+       var postmp = findPos(pos);
+       if (postmp<0){
+         throw new Error(message_recNotFound);
        };
-
-
-    /*   with (ContactsArray[pos]) {
+       with (ContactsArray[postmp]) {
          Name=name;
          LastName=lastName;
          Email=email;
          Phone=phone;
-       };*/
+       };
+
     };
 
-    function deleteContact(name){
-      var pos = ContactsArray.indexOf(name);
-      ContactsArray.splice(pos,1);
+    function deleteContact(pos){
+      var postmp = findPos(pos);
+      if (postmp<0){
+        throw new Error(message_recNotFound);
+      };
+      ContactsArray.splice(postmp,1);
      };
 
     function listContacts(){
       return ContactsArray;
-      /*ContactsArray.forEach(function(reg, indice, Arreglo){
-        console.log(reg.Name);
-      }
-    );*/
     };
-
+    function listContact(pos){
+      var postmp = findPos(pos);
+      if (postmp<0){
+        throw new Error(message_recNotFound);
+      };
+      return ContactsArray[postmp];
+     };
 
   return {
     listarContactos : function (){
-    return listContacts();
+        return listContacts();
+    },
+    listarContacto : function (position){
+        return listContact(position);
     },
     crearContacto: function (name, lastName, email,phone){
-      addContacts(name,lastName, email,phone);
+        addContacts(name,lastName, email,phone);
     },
-     editarContacto(name,lastName, email,phone){
-       updateContact(name,lastName, email,phone);
+
+     editarContacto(position, name,lastName, email,phone){
+        updateContact(position,name, lastName, email,phone);
      },
-     borrarContacto(name){
-       deleteContact(name);
+
+     borrarContacto(position){
+        deleteContact(position);
      }
   };
 };
+
+
+
