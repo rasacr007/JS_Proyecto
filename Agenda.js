@@ -5,6 +5,19 @@ var Agenda = function() {
     function addContacts(name, lastName, email,phone){
         ContactsArray.push({Name:name,LastName:lastName, Email:email, Phone:phone});
     };
+    
+    function finPos (name){
+      var pos=-1,
+          result=-1
+      ContactsArray.forEach(function(item,i,arrayobj){
+          if (item.Name)==name){
+            result = pos;
+          }else{
+              pos+=1;
+          }
+      });
+        return result;
+    };
 
     function updateContact(name, lastName, email,phone){
        var pos = ContactsArray.indexOf(name);
