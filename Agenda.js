@@ -6,7 +6,7 @@ var Agenda = function() {
 
     function addContacts(name, lastName, email,phone){
         var pos= findMaxPosition();
-        ContactsArray.push({Position: pos, Name:name,LastName:lastName, Email:email, Phone:phone});
+        ContactsArray.push({position: pos, name:name,lastName:lastName, email:email, phone:phone});
     };
 
     function findMaxPosition(){
@@ -19,7 +19,7 @@ var Agenda = function() {
     function findPos (pos){
       var  result=-1
       ContactsArray.forEach(function(item,i,arrayobj){
-          if (item.Position==pos){
+          if (item.Position===pos){
             result = i;
           };
       });
@@ -76,16 +76,15 @@ var Agenda = function() {
 
      borrarContacto(position){
         deleteContact(position);
-     }
-     
+     },
+
      cargarDatosPrueba(){
          addContacts("Randall","Sanabria","sanabria7@hotmail.com","506-8801-9698");
          addContacts("Juan","Perez","perez@hotmail.com","505-8801-9698");
          addContacts("Carlos","Mena","mena@hotmail.com","507-8801-9698");
          addContacts("Raul","Mora","mora@hotmail.com","508-8801-9698");
      }
-     }
-     
+
   };
 };
 
