@@ -77,6 +77,15 @@ var Agenda = function() {
      borrarContacto(position){
         deleteContact(position);
      }
+     
+     cargarDatosPrueba(){
+         addContacts("Randall","Sanabria","sanabria7@hotmail.com","506-8801-9698");
+         addContacts("Juan","Perez","perez@hotmail.com","505-8801-9698");
+         addContacts("Carlos","Mena","mena@hotmail.com","507-8801-9698");
+         addContacts("Raul","Mora","mora@hotmail.com","508-8801-9698");
+     }
+     }
+     
   };
 };
 
