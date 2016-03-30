@@ -4,78 +4,59 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bootstrap 101 Template</title>
 
   </head>
   <body>
-
-
     <h1 id="tit"></h1>
 
-    <button type="button" id="myButton" data-loading-text="Loading caxa..." data-complete-text="finished!" class="btn btn-primary" autocomplete="off">
-               Nuevo Contacto
-           </button>
+    <button type="button" id="myButton" data-loading-text="Loading caxa..." data-complete-text="finished!" class="btn btn-primary"  autofocus=""      autocomplete="off">    Nuevo Contacto
+     </button>
 
-           <table class="table table-striped" id="tabla">
-             <thead>
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>John</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
-        </tr>
-        <tr>
-          <td>Mary</td>
-          <td>Moe</td>
-          <td>mary@example.com</td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td>Dooley</td>
-          <td>july@example.com</td>
-        </tr>
-      </tbody>
-           </table>
+    <table class="table table-striped" id="tabla" ></table>
 
 
-
-
-           <script src="js/jquery.js"></script>
-           <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/Agenda.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <script>
     $(document).ready(function(){
-
+      document.getElementById("tabla").innerHTML = LlenarTabla();
       document.getElementById("myButton").addEventListener("click", llamarNuevo);
+      document.getElementById("tabla").addEventListener("click", llamarNuevo2);
+    });
+    var Registros=[];
 
-      document.getElementById("tabla").innerHTML +=
-      "<tr> <td> Rasa </td> <td> Rasa2 </td> <td> Rasa3 </td> </tr>";
+    function LlenarTabla(){
+        var x ="<thead><tr><th>Nombre</th><th>Apellido</th><th>Telefono</th><th>Email</th></tr></thead>"
+        x+="<tbody>";
+        var regAgenda = new Agenda();
+        regAgenda.cargarDatosPrueba();
+        Registros= regAgenda.listarContactos();
+         Registros.forEach( function (item,  indice , data){
+              x+="<tr>" +
+              "<td>" + item.name+"</td>"+
+              "<td>"+item.lastName+"</td>"+
+              "<td>"+item.phone+"</td>"+
+              "<td>"+item.email+"</td>"+
+              "</tr>";
         });
+        x+="</tbody>";
+        return x;
+    };
 
+    function llamarNuevo(){
+      window.open("Edit.html");
+    };
 
-
-
-
-function llamarNuevo(){
-  window.open("Edit.html");
-}
-
-
-
+    function llamarNuevo2(){
+       var x=document.getElementsByTagName("tr");
+       dato1=x[1].innerHTML;
+      alert(dato1);
+    }
     </script>
-
-
-
-
   </body>
 </html>
