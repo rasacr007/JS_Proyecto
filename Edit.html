@@ -1,13 +1,10 @@
-\<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
+    <title>Contactos</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
   </head>
@@ -15,39 +12,47 @@
 
 
 <div class="container">
-  <h2>Horizontal form</h2>
+  <h2>Contactos</h2>
   <form class="form-horizontal" role="form">
+
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="email" placeholder="Enter email">
+      <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+	<div class="col-xs-3">
+        <input type="text" class="form-control" id="nombre" required placeholder="Digite Nombre" size="10" >
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password:</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+
+      <label class="control-label col-sm-2" for="apellido">Apellido:</label>
+	<div class="col-xs-3">
+        <input type="text" class="form-control" id="apellido" placeholder="Digite Apellido">
       </div>
     </div>
     <div class="form-group">
+
+	      <label class="control-label col-sm-2" for="email">Email:</label>
+	<div class="col-xs-3">
+	        <input type="email" class="form-control" id="email" required placeholder="Digite Email">
+	    </div>
+    </div>
+
+    <div class="form-group">
+
+      <label class="control-label col-sm-2" for="telefono">Telefono:</label>
+	<div class="col-xs-3">
+        <input type="tel" class="form-control" id="telefono" required placeholder="Digite Telefono" pattern= "\d{4}[\-]\d{4}" title="El formato es 9999-9999">
+
+    </div>
+    </div>
+ 
       <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="summit" class="btn btn-default  btn-lg data-loading-text="Guardando..." data-complete-text="Finalizado!">Guardar</button>
+        <button type="button" class="btn btn-default  btn-lg">Cancelar</button>
       </div>
     </div>
   </form>
 </div>
-    <h1>Hello, world!</h1>
-
-    <button type="button" id="myButton" data-loading-text="Loading caxa..." data-complete-text="finished!" class="btn btn-primary" autocomplete="off">
-               Loading states
-           </button>
+    
 
 
 
