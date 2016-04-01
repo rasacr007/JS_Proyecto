@@ -1,5 +1,6 @@
 console.log('Hello everyone!');
 
+
 var Agenda = function() {
     var ContactsArray =[];
     var message_recNotFound ='Registro no encontrado'
@@ -12,14 +13,14 @@ var Agenda = function() {
     function findMaxPosition(){
       var  result=0;
       ContactsArray.forEach(function(item,i,arrayobj){
-            result = item.Position;
+            result = item.position;
       });
         return result+1;
     };
     function findPos (pos){
       var  result=-1
       ContactsArray.forEach(function(item,i,arrayobj){
-          if (item.Position===pos){
+          if (item.position===pos){
             result = i;
           };
       });
@@ -32,10 +33,10 @@ var Agenda = function() {
          throw new Error(message_recNotFound);
        };
        with (ContactsArray[postmp]) {
-         Name=name;
-         LastName=lastName;
-         Email=email;
-         Phone=phone;
+         name=name;
+         lastName=lastName;
+         email=email;
+         phone=phone;
        };
 
     };
@@ -87,5 +88,3 @@ var Agenda = function() {
 
   };
 };
-
-
