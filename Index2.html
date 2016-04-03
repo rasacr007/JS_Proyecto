@@ -75,7 +75,7 @@
     </div>
     <div class="col-sm-1 sidenav">
       <div>
-          <input type="image" src="add32.ico" id="myButton"  title="Nuevo Contacto" > </input>
+          <input type="image" src="add32.ico" id="nuevoContacto"  title="Nuevo Contacto" > </input>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
 <script>
 $(document).ready(function(){
   document.getElementById("tabla").innerHTML = LlenarTabla();
-//  document.getElementById("myButton").addEventListener("click", llamarNuevo);
+  document.getElementById("nuevoContacto").addEventListener("click", llamarNuevoContacto);
 //  document.getElementById("tabla").addEventListener("click", llamarNuevo2);
 });
 var Registros=[];
@@ -107,7 +107,7 @@ function LlenarTabla(){
           x+="<tr>" +
 
           "<td>"+
-          "<a href=Edit.html?position=" + item.position+"&name="+item.name+"&lastName="+item.lastName+"&email="+item.email+"&phone="+item.phone+">"+item.name+"</a></td>"+
+          "<a href=Edit.html?accion=2&position=" + item.position+">"+item.name+"</a></td>"+
           "<td>"+item.lastName+"</td>"+
           "<td>"+item.phone+"</td>"+
           "<td>"+item.email+"</td>"+
@@ -116,14 +116,9 @@ function LlenarTabla(){
     x+="</tbody>";
     return x;
 };
-function llamarNuevo(){
-  window.open("Edit.html");
+function llamarNuevoContacto(){
+  window.open("Edit.html?accion=1");
 };
-function llamarNuevo2(){
-   var x=document.getElementsByTagName("tr");
-   dato1=x[1].innerHTML;
-  alert(dato1);
-}
 </script>
 </body>
 </html>

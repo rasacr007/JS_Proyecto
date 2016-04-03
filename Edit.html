@@ -19,7 +19,7 @@
       color: #fff;
    }
   </style>
-  
+
   </head>
   <body>
 
@@ -57,15 +57,15 @@
 
     </div>
     </div>
- 
+
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="summit" class="btn btn-success  btn-lg data-loading-text="Guardando..." data-complete-text="Finalizado!">Guardar</button>
-        <button type="button" class="btn btn-default  btn-lg">Cancelar</button>
+        <button type="summit" id="guardar" class="btn btn-success  btn-lg data-loading-text="Guardando..." data-complete-text="Finalizado!">Guardar</button>
+        <button type="button" id="cancelar" class="btn btn-default  btn-lg">Cancelar</button>
       </div>
     </div>
   </form>
 </div>
-    
+
 
 
 
@@ -73,15 +73,68 @@
 
 
            <script src="js/jquery.js"></script>
+           <script src="js/Agenda.js"></script>
            <script src="js/bootstrap.min.js"></script>
 
     <script>
-        $('#myButton').on('click', function () {
-            var $btn = $(this).button('completez')
-            // business logic...
-            // $(this).button('complete') // button text will be "finished!"
-            //$btn.button('reset')
-        })
+      $(document).ready(function(){
+        var objAgenda = new Agenda();
+        var obj =objAgenda.cargarDatosPrueba();
+        accionPantalla=getParameterByName("accion",  window.location.href);
+        if (accionPantalla==2){
+          var x = cargarDatos();
+        };
+        document.getElementById("cancelar").addEventListener("click", volverPagina);
+        document.getElementById("guardar").addEventListener("click", guardar);
+      });
+
+      var accionPantalla;
+
+
+      function volverPagina(){
+          javascript:history.back(-1);
+      };
+
+      function cargarDatos(){
+
+        var param = getParameterByName("position",  window.location.href);
+        var objAgenda = new Agenda();
+        var obj= objAgenda.listarContacto(param);
+            document.getElementById("nombre").value=obj.name;
+            document.getElementById("apellido").value=obj.lastName;
+            document.getElementById("email").value=obj.email;
+            document.getElementById("telefono").value=obj.phone;
+       }
+
+       function guardar(){
+         var objAgenda = new Agenda();
+         if (accionPantalla ==1){
+            objAgenda.crearContacto(document.getElementById("nombre").value,
+            document.getElementById("apellido").value,
+            document.getElementById("email").value,
+            document.getElementById("telefono").value);
+         }
+         else {
+           objAgenda.editarContacto(document.getElementById("nombre").value,
+           document.getElementById("apellido").value,
+           document.getElementById("email").value,
+           document.getElementById("telefono").value);
+         }
+
+
+
+
+       }
+       function getParameterByName(name, url) {
+           if (!url) url = window.location.href;
+           name = name.replace(/[\[\]]/g, "\\$&");
+           var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+               results = regex.exec(url);
+           if (!results) return null;
+           if (!results[2]) return '';
+           return decodeURIComponent(results[2].replace(/\+/g, " "));
+       }
+
     </script>
 
 
