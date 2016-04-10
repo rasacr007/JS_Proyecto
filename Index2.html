@@ -6,36 +6,9 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/estiloagenda.css" rel="stylesheet">
 
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #000;
-      color: white;
-      padding: 15px;
-    }
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
-  </style>
+
 </head>
 <body>
 
@@ -43,43 +16,35 @@
   <div class="container-fluid" >
     <p class="text-left">
      <h1  style="color:white"> Lista Contactos </h1> </p>
-
-
-<!--    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-        <li>	</i>
-      </ul>
-    </div>-->
   </div>
 </nav>
 
-<div class="container-fluid text-center">
-  <div class="row content">
-    <div class="col-sm-8 text-left">
+<div class="panel panel-default">
+     <div class="panel-heading">
+       <input type="image" src="add32.ico" id="nuevoContacto"  title="Nuevo Contacto" > </input>
+        <div class="btn-group" role="group" aria-label="...">
+<!--          <button type="button" id="btnNuevo" class="btn btn-primary">Nuevo</button>-->
+<!--          <button type="button" id="btnEditar" class="btn btn-primary">Editar</button>-->
+<!--           <button type="button" id="btnBorrar" class="btn btn-primary">Borrar</button>-->
+         </div>
 
-      <div class="table-responsive">
-   <table class="table table-striped" id="tabla" ></table>
- </div>
-    </div>
-    <div class="col-sm-1 sidenav">
-      <div>
-          <input type="image" src="add32.ico" id="nuevoContacto"  title="Nuevo Contacto" > </input>
-      </div>
-    </div>
   </div>
+
+      <div class="panel-body">
+        <div class="container-fluid text-center"/>
+          <div class="row content">
+            <div class="col-sm-8 text-left">
+              <div class="table-responsive">
+                  <table class="table table-striped" id="tabla" ></table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
+
+
+
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
@@ -91,34 +56,19 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
-$(document).ready(function(){
-  document.getElementById("tabla").innerHTML = LlenarTabla();
-  document.getElementById("nuevoContacto").addEventListener("click", llamarNuevoContacto);
-//  document.getElementById("tabla").addEventListener("click", llamarNuevo2);
-});
-var Registros=[];
-function LlenarTabla(){
-    var x ="<thead><tr><th>Nombre</th><th>Apellido</th><th>Telefono</th><th>Email</th></tr></thead>"
-    x+="<tbody>";
-    var regAgenda = new Agenda();
-    regAgenda.cargarDatosPrueba();
-    Registros= regAgenda.listarContactos();
-     Registros.forEach( function (item,  indice , data){
-          x+="<tr>" +
 
-          "<td>"+
-          "<a href=Edit.html?accion=2&position=" + item.position+">"+item.name+"</a></td>"+
-          "<td>"+item.lastName+"</td>"+
-          "<td>"+item.phone+"</td>"+
-          "<td>"+item.email+"</td>"+
-          "</tr>";
-    });
-    x+="</tbody>";
-    return x;
-};
-function llamarNuevoContacto(){
-  window.open("Edit.html?accion=1");
-};
+document.addEventListener('DOMContentLoaded', function(evento) {
+  cargarPantallaListar();
+});
+
+//$(document).ready(function(){
+  //document.getElementById("nuevoContacto").addEventListener("click", llamarNuevoContacto);
+//  document.getElementById("tabla").addEventListener("click", llamarNuevo2);
+//});
+
+//function llamarNuevoContacto(){
+  //window.open("Edit.html?accion=1");
+//};
 </script>
 </body>
 </html>

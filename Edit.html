@@ -7,25 +7,15 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Contactos</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/estiloagenda.css" rel="stylesheet">
 
-
-<style>
-  .btn-default {
-      background: #fff;
-      color: #ff0000;
-   }
-  .btn-default:hover {
-      background: #ff0000;
-      color: #fff;
-   }
-  </style>
 
   </head>
   <body>
 
 
 <div class="container">
-  <h2>Contactos</h2>
+  <h2 id ="titulo" Contactos></h2>
   <form class="form-horizontal" role="form">
 
     <div class="form-group">
@@ -77,63 +67,12 @@
            <script src="js/bootstrap.min.js"></script>
 
     <script>
-      $(document).ready(function(){
-        var objAgenda = new Agenda();
-        var obj =objAgenda.cargarDatosPrueba();
-        accionPantalla=getParameterByName("accion",  window.location.href);
-        if (accionPantalla==2){
-          var x = cargarDatos();
-        };
-        document.getElementById("cancelar").addEventListener("click", volverPagina);
-        document.getElementById("guardar").addEventListener("click", guardar);
+      document.addEventListener('DOMContentLoaded', function(evento) {
+        cargarPantallaEditar();
       });
 
-      var accionPantalla;
 
 
-      function volverPagina(){
-          javascript:history.back(-1);
-      };
-
-      function cargarDatos(){
-
-        var param = getParameterByName("position",  window.location.href);
-        var objAgenda = new Agenda();
-        var obj= objAgenda.listarContacto(param);
-            document.getElementById("nombre").value=obj.name;
-            document.getElementById("apellido").value=obj.lastName;
-            document.getElementById("email").value=obj.email;
-            document.getElementById("telefono").value=obj.phone;
-       }
-
-       function guardar(){
-         var objAgenda = new Agenda();
-         if (accionPantalla ==1){
-            objAgenda.crearContacto(document.getElementById("nombre").value,
-            document.getElementById("apellido").value,
-            document.getElementById("email").value,
-            document.getElementById("telefono").value);
-         }
-         else {
-           objAgenda.editarContacto(document.getElementById("nombre").value,
-           document.getElementById("apellido").value,
-           document.getElementById("email").value,
-           document.getElementById("telefono").value);
-         }
-
-
-
-
-       }
-       function getParameterByName(name, url) {
-           if (!url) url = window.location.href;
-           name = name.replace(/[\[\]]/g, "\\$&");
-           var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
-               results = regex.exec(url);
-           if (!results) return null;
-           if (!results[2]) return '';
-           return decodeURIComponent(results[2].replace(/\+/g, " "));
-       }
 
     </script>
 
