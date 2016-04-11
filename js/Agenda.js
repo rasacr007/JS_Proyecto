@@ -93,10 +93,8 @@ var Agenda = function() {
   };
 };
 
-
-
-
 var objAgenda= new Agenda();
+
 function cargarPantallaListar()
 {
       var Registros=[];
@@ -112,42 +110,47 @@ function cargarPantallaListar()
             "<td>"+item.phone+"</td>"+
             "<td>"+item.email+"</td>"+
             "<td>"+"<a href=Edit.html?accion=2&position=" + item.position+">"
-            +"<img src=edit-24.ico alt=Editar title=Editar>"+"</a></td>"+
+            +"<img src=imgs/edit-24.ico alt=Editar title=Editar>"+"</a></td>"+
             "<td>"+
             "<a href=Edit.html?accion=3&position=" + item.position+">"
-            +"<img src=delete-24.ico alt=Borrar title=Borrar>"+"</a></td>"+
+            +"<img src=imgs/delete-24.ico alt=Borrar title=Borrar>"+"</a></td>"+
             "</tr>";
       });
       x+="</tbody>";
-      document.getElementById("tabla").innerHTML = x;
-}
+      document.querySelector("table").innerHTML = x;
+      document.querySelector("#nuevoContacto").addEventListener("click",function () {
+      window.open("Edit.html?accion=1");
+      })
 
+
+}
 
 function cargarPantallaEditar(){
-  objAgenda.cargarDatosPrueba()
-  document.querySelector('#cancelar').addEventListener('click', volverPagina);
-  document.querySelector('#guardar').addEventListener('click', guardar);
-  var accionPantalla=parseInt(getParameterByName("accion",  window.location.href))
-  if (accionPantalla!==1)
-    cargarDatos();
 
+    var tituloPantalla
+    var tituloPantalla
+    objAgenda.cargarDatosPrueba()
+    document.querySelector('#cancelar').addEventListener('click', volverPagina);
+    document.querySelector('#guardar').addEventListener('click', guardar);
+    accionPantalla=parseInt(getParameterByName("accion",  window.location.href));
+    if (accionPantalla!==1){
+      cargarDatos();
+    };
+     switch (accionPantalla){
+                            case 1:
+                              tituloPantalla='Crear Contacto';
+                                    break;
+                            case 2:
+                            tituloPantalla= 'Editar Contacto';
+                                    break;
+                            default :
+                              tituloPantalla='Borrar Contacto';
+                              break;
+                            };
 
+  document.querySelector('h1').innerHTML=tituloPantalla;
+};
 
-  var tituloPantalla
-   switch (accionPantalla){
-                          case 1:
-                            tituloPantalla='Crear Contacto';
-                                  break;
-                          case 2:
-                          tituloPantalla= 'Editar Contacto';
-                                  break;
-                          default :
-                            tituloPantalla='Borrar Contacto';
-                            break;
-                          };
-
-document.querySelector('h2').innerHTML=tituloPantalla;
-}
 function volverPagina(){
     javascript:history.back(-1);
 };
@@ -157,29 +160,29 @@ function cargarDatos(){
   var param = getParameterByName("position",  window.location.href);
   //var objAgenda = new Agenda();
   var obj= objAgenda.listarContacto(param);
-      document.getElementById("nombre").value=obj.name;
-      document.getElementById("apellido").value=obj.lastName;
-      document.getElementById("email").value=obj.email;
-      document.getElementById("telefono").value=obj.phone;
- }
+      document.querySelector("#nombre").value=obj.name;
+      document.querySelector("#apellido").value=obj.lastName;
+      document.querySelector("#email").value=obj.email;
+      document.querySelector("#telefono").value=obj.phone;
+ };
 
  function guardar(){
    var accionPantalla=parseInt(getParameterByName("accion",  window.location.href));
    //var objAgenda = new Agenda();
 
    if (accionPantalla ===1){
-      objAgenda.crearContacto(document.getElementById("nombre").value,
-      document.getElementById("apellido").value,
-      document.getElementById("email").value,
-      document.getElementById("telefono").value);
+      objAgenda.crearContacto(document.querySelector("#nombre").value,
+      document.querySelector("#apellido").value,
+      document.querySelector("#email").value,
+      document.querySelector("#telefono").value);
    }
    else if (accionPantalla ===2){
      objAgenda.editarContacto(
      getParameterByName("position",  window.location.href),
-     document.getElementById("nombre").value,
-     document.getElementById("apellido").value,
-     document.getElementById("email").value,
-     document.getElementById("telefono").value);
+     document.querySelector("#nombre").value,
+     document.querySelector("#apellido").value,
+     document.querySelector("#email").value,
+     document.querySelector("#telefono").value);
    }
    else {
      objAgenda.borrarContacto(

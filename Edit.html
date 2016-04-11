@@ -13,71 +13,62 @@
   </head>
   <body>
 
-
-<div class="container">
-  <h2 id ="titulo" Contactos></h2>
-  <form class="form-horizontal" role="form">
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="nombre">Nombre:</label>
-	<div class="col-xs-3">
-        <input type="text" class="form-control" id="nombre" required placeholder="Digite Nombre" size="10" >
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid" >
+        <p class="text-left">
+         <h1  style="color:white" id="titulo"> Lista Contactos </h1> </p>
       </div>
+    </nav>
+
+
+  <div class="container">
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+    	     <div class="col-xs-3">
+             <input type="text" class="form-control" id="nombre" required placeholder="Digite Nombre" size="10" >
+          </div>
+        </div>
+
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="apellido">Apellido:</label>
+    	     <div class="col-xs-3">
+              <input type="text" class="form-control" id="apellido" placeholder="Digite Apellido">
+            </div>
+        </div>
+
+        <div class="form-group">
+    	      <label class="control-label col-sm-2" for="email">Email:</label>
+    	       <div class="col-xs-3">
+    	          <input type="email" class="form-control" id="email" required placeholder="Digite Email">
+    	        </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="telefono">Telefono:</label>
+    	     <div class="col-xs-3">
+              <input type="tel" class="form-control" id="telefono" required placeholder="Digite Telefono" pattern= "\d{4}[\-]\d{4}" title="El formato es 9999-9999">
+            </div>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="summit" id="guardar" class="btn btn-success  btn-lg data-loading-text="Guardando..." data-complete-text="Finalizado!">Guardar</button>
+            <button type="button" id="cancelar" class="btn btn-default  btn-lg">Cancelar</button>
+        </div>
+
+      </form>
     </div>
-    <div class="form-group">
-
-      <label class="control-label col-sm-2" for="apellido">Apellido:</label>
-	<div class="col-xs-3">
-        <input type="text" class="form-control" id="apellido" placeholder="Digite Apellido">
-      </div>
-    </div>
-    <div class="form-group">
-
-	      <label class="control-label col-sm-2" for="email">Email:</label>
-	<div class="col-xs-3">
-	        <input type="email" class="form-control" id="email" required placeholder="Digite Email">
-	    </div>
-    </div>
-
-    <div class="form-group">
-
-      <label class="control-label col-sm-2" for="telefono">Telefono:</label>
-	<div class="col-xs-3">
-        <input type="tel" class="form-control" id="telefono" required placeholder="Digite Telefono" pattern= "\d{4}[\-]\d{4}" title="El formato es 9999-9999">
-
-    </div>
-    </div>
-
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="summit" id="guardar" class="btn btn-success  btn-lg data-loading-text="Guardando..." data-complete-text="Finalizado!">Guardar</button>
-        <button type="button" id="cancelar" class="btn btn-default  btn-lg">Cancelar</button>
-      </div>
-    </div>
-  </form>
-</div>
 
 
+  <script src="js/jquery.js"></script>
+  <script src="js/Agenda.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 
-
-
-
-
-           <script src="js/jquery.js"></script>
-           <script src="js/Agenda.js"></script>
-           <script src="js/bootstrap.min.js"></script>
-
-    <script>
+<script>
       document.addEventListener('DOMContentLoaded', function(evento) {
         cargarPantallaEditar();
       });
-
-
-
-
-    </script>
-
-
-
-
-  </body>
+</script>
+</body>
 </html>
