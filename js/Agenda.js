@@ -109,17 +109,17 @@ function cargarPantallaListar()
             "<td>"+item.lastName+"</td>"+
             "<td>"+item.phone+"</td>"+
             "<td>"+item.email+"</td>"+
-            "<td>"+"<a href=Edit.html?accion=2&position=" + item.position+">"
+            "<td>"+"<a href=edit.html?accion=2&position=" + item.position+">"
             +"<img src=imgs/edit-24.ico alt=Editar title=Editar>"+"</a></td>"+
             "<td>"+
-            "<a href=Edit.html?accion=3&position=" + item.position+">"
+            "<a href=edit.html?accion=3&position=" + item.position+">"
             +"<img src=imgs/delete-24.ico alt=Borrar title=Borrar>"+"</a></td>"+
             "</tr>";
       });
       x+="</tbody>";
       document.querySelector("table").innerHTML = x;
       document.querySelector("#nuevoContacto").addEventListener("click",function () {
-      window.open("Edit.html?accion=1");
+      window.open("edit.html?accion=1","_self");
       })
 
 
