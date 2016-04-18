@@ -8,29 +8,18 @@ var accesoDatos= function () {
 
   return {
     listarTodosDatos : function(){
-      /*  var window.localStorage.removeItem("Agenda_"+position);
-        return true
-        */
+      var registros_storage =JSON.parse((window.localStorage.getItem("Agenda")));
+      return   registros_storage;
+
     },
 
 
-    guardarDatos: function (position,name, lastName, email,phone) {
-      if (!window.localStorage.getItem("Agenda")) {
-        var registro=JSON.stringify({position: position, name:name,lastName:lastName, email:email, phone:phone});
-        window.localStorage.setItem("Agenda_"+position,registro);
-      }
-    },
-    editarDatos : function(position,name, lastName, email,phone){
-      var registro=JSON.stringify({position: position, name:name,lastName:lastName, email:email, phone:phone});
-      window.localStorage.setItem("Agenda_"+position,registro);
+    guardarDatos: function (objeto) {
 
-    },
-    listarDatos: function (position){
-        return JSON.parse(JSON.stringify(window.localStorage.getItem("Agenda_"+position)));
-    },
-    borrarDatos : function(position){
-        window.localStorage.removeItem("Agenda_"+position);
-        return true
+        //var registro=JSON.stringify({position: position, name:name,lastName:lastName, email:email, phone:phone});
+        //window.localStorage.setItem("Agenda",registro);
+        window.localStorage.setItem("Agenda",JSON.stringify(objeto));
+
     }
   }
 

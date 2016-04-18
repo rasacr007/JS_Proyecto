@@ -7,7 +7,7 @@ function cargarPantallaListar()
       var x ="<thead><tr><th>Nombre</th><th>Apellido</th><th>Telefono</th><th>Email</th><th></th><th></th></tr></thead>"
       x+="<tbody>";
       //var regAgenda = new Agenda();
-      objAgenda.cargarDatosPrueba();
+      //objAgenda.cargarDatosPrueba();
       Registros= objAgenda.listarContactos();
        Registros.forEach( function (item){
             x+="<tr>" +
@@ -34,8 +34,7 @@ function cargarPantallaListar()
 function cargarPantallaEditar(){
 
     var tituloPantalla
-    var tituloPantalla
-    objAgenda.cargarDatosPrueba()
+      Registros= objAgenda.listarContactos();
     document.querySelector('#cancelar').addEventListener('click', volverPagina);
     document.querySelector('#guardar').addEventListener('click', guardar);
     accionPantalla=parseInt(getParameterByName("accion",  window.location.href));
@@ -94,6 +93,8 @@ function cargarDatos(){
      objAgenda.borrarContacto(
      getParameterByName("position",  window.location.href))
    }
+
+   volverPagina();
 }
 
  function getParameterByName(name, url) {

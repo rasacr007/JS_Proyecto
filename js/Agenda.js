@@ -9,7 +9,7 @@ var Agenda = function() {
         var pos= findMaxPosition();
         ContactsArray.push({position: pos, name:name,lastName:lastName, email:email, phone:phone});
         var acceso = new accesoDatos();
-        acceso.guardarDatos(pos,name, lastName, email,phone);
+        acceso.guardarDatos(ContactsArray);
 
     };
 
@@ -20,6 +20,7 @@ var Agenda = function() {
       });
         return result+1;
     };
+
     function findPos (pos){
       var  result=-1
       ContactsArray.forEach(function(item,i,arrayobj){
@@ -41,6 +42,8 @@ var Agenda = function() {
          email=par_email;
          phone=par_phone;
        };
+       var acceso = new accesoDatos();
+       acceso.guardarDatos(ContactsArray);
 
     };
 
@@ -50,11 +53,19 @@ var Agenda = function() {
         throw new Error(message_recNotFound);
       };
       ContactsArray.splice(postmp,1);
+      var acceso = new accesoDatos();
+      acceso.guardarDatos(ContactsArray);
      };
 
     function listContacts(){
-      return ContactsArray;
+      var acceso = new accesoDatos();
+      var regs=acceso.listarTodosDatos();
+      regs.forEach(function(item){
+        ContactsArray.push(item);
+      });
+            return ContactsArray;
     };
+
     function listContact(pos){
       var postmp = findPos(pos);
       if (postmp<0){
