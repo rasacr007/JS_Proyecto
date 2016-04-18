@@ -3,6 +3,13 @@
 var Agenda = function() {
     var ContactsArray =[];
     var message_recNotFound ='Registro no encontrado'
+    
+    function crearObjetoRegistroAgenda(par_name, par_lastName, par_email,par_phone){
+        this.name= par_name;
+        this.lastName=par_lastName;
+        this.email=par_email;
+        this.phone=par_phone;
+    },
 
 
     function addContacts(name, lastName, email,phone){
