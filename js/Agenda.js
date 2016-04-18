@@ -13,14 +13,15 @@ var Agenda = function() {
 
     };
 
-    function findMaxPosition(){
+  /* Devuelve el maximo registro ingresado */
+  function findMaxPosition(){
       var  result=-1;
-      ContactsArray.forEach(function(item,i,arrayobj){
-            result = item.position;
-      });
-        return result+1;
+      var maxlenght=ContactsArray.length();
+      result= 1+(maxlength ===0 ? -1 : ContactsArray[maxlength-1].position);
+      return result;
     };
 
+    /* Ubica la posicion dentro del arreglo correspondiente al registro deseado, sino encuentra devuelve -1 */
     function findPos (pos){
       var  result=-1
       ContactsArray.forEach(function(item,i,arrayobj){
