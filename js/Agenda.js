@@ -3,7 +3,13 @@
 var Agenda = function() {
     var ContactsArray =[];
     var message_recNotFound ='Registro no encontrado'
-    
+    var fieldName='name',
+        fieldLastName='lastName',
+        fieldPhone='phone',
+        fieldEmail='email',
+        fieldPosition='position',
+        
+        
     function crearObjetoRegistroAgenda(par_name, par_lastName, par_email,par_phone){
         this.name= par_name;
         this.lastName=par_lastName;
@@ -11,15 +17,22 @@ var Agenda = function() {
         this.phone=par_phone;
     },
 
+ function addContacts(objRegistro){
+        var pos= findMaxPosition();
+        ContactsArray.push(ObjRegistro);
+        var acceso = new accesoDatos();
+        acceso.guardarDatos(ContactsArray);
 
-    function addContacts(name, lastName, email,phone){
+    };
+
+   /* function addContacts(name, lastName, email,phone){
         var pos= findMaxPosition();
         ContactsArray.push({position: pos, name:name,lastName:lastName, email:email, phone:phone});
         var acceso = new accesoDatos();
         acceso.guardarDatos(ContactsArray);
 
     };
-
+*/
   /* Devuelve el maximo registro ingresado */
   function findMaxPosition(){
       var  result=-1;
@@ -39,6 +52,22 @@ var Agenda = function() {
         return result;
     };
 
+    function updateContact(objRegistro){
+       var postmp = findPos(objRegistro[fieldPosition])
+       if (postmp<0){
+         throw new Error(message_recNotFound);
+       };
+       with (ContactsArray[postmp]) {
+         name=objRegistro[fieldName];
+         lastName=objRegistro[fieldLastName];
+         email=objRegistro[fieldEmail];
+         phone=objRegistro[fieldPhone];
+       };
+       var acceso = new accesoDatos();
+       acceso.guardarDatos(ContactsArray);
+
+    };
+/*
     function updateContact(par_pos,par_name, par_lastName,par_email,par_phone){
        var postmp = findPos(par_pos);
        if (postmp<0){
@@ -54,7 +83,7 @@ var Agenda = function() {
        acceso.guardarDatos(ContactsArray);
 
     };
-
+*/
     function deleteContact(pos){
       var postmp = findPos(pos);
       if (postmp<0){
@@ -89,13 +118,21 @@ var Agenda = function() {
     listarContacto : function (position){
         return listContact(position);
     },
+       crearContacto: function (registroObjeto){
+        addContacts(registroObjeto);
+    },
+
+     editarContacto(registroObjeto){
+        updateContact(registroObjeto);
+     },
+    /*
     crearContacto: function (name, lastName, email,phone){
         addContacts(name,lastName, email,phone);
     },
 
      editarContacto(position, name,lastName, email,phone){
         updateContact(position,name, lastName, email,phone);
-     },
+     },*/
 
      borrarContacto(position){
         deleteContact(position);
