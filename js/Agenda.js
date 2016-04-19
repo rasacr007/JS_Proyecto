@@ -2,24 +2,19 @@
 
 var Agenda = function() {
     var ContactsArray =[];
-    var message_recNotFound ='Registro no encontrado'
+    var message_recNotFound ='Registro no encontrado';
     var fieldName='name',
         fieldLastName='lastName',
         fieldPhone='phone',
         fieldEmail='email',
-        fieldPosition='position',
-        
-        
-    function crearObjetoRegistroAgenda(par_name, par_lastName, par_email,par_phone){
-        this.name= par_name;
-        this.lastName=par_lastName;
-        this.email=par_email;
-        this.phone=par_phone;
-    },
+        fieldPosition='position'
+
+
 
  function addContacts(objRegistro){
         var pos= findMaxPosition();
-        ContactsArray.push(ObjRegistro);
+        objRegistro[fieldPosition]=pos;
+        ContactsArray.push(objRegistro);
         var acceso = new accesoDatos();
         acceso.guardarDatos(ContactsArray);
 
@@ -36,8 +31,8 @@ var Agenda = function() {
   /* Devuelve el maximo registro ingresado */
   function findMaxPosition(){
       var  result=-1;
-      var maxlenght=ContactsArray.length();
-      result= 1+(maxlength ===0 ? -1 : ContactsArray[maxlength-1].position);
+      var maxlength=ContactsArray.length;
+      result= 1+(maxlength ===0 ? -1 : ContactsArray[maxlength-1][fieldPosition]);
       return result;
     };
 
@@ -84,8 +79,8 @@ var Agenda = function() {
 
     };
 */
-    function deleteContact(pos){
-      var postmp = findPos(pos);
+    function deleteContact(registroObjeto){
+      var postmp = findPos(registroObjeto[fieldPosition]);
       if (postmp<0){
         throw new Error(message_recNotFound);
       };
@@ -103,8 +98,8 @@ var Agenda = function() {
             return ContactsArray;
     };
 
-    function listContact(pos){
-      var postmp = findPos(pos);
+    function listContact(registroObjeto){
+      var postmp = findPos(registroObjeto[fieldPosition]);
       if (postmp<0){
         throw new Error(message_recNotFound);
       };
@@ -134,8 +129,8 @@ var Agenda = function() {
         updateContact(position,name, lastName, email,phone);
      },*/
 
-     borrarContacto(position){
-        deleteContact(position);
+     borrarContacto(registroObjeto){
+        deleteContact(registroObjeto);
      },
      cargarDatosPrueba(){
 

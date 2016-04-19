@@ -34,7 +34,7 @@ function cargarPantallaListar()
 function cargarPantallaEditar(){
 
     var tituloPantalla
-      Registros= objAgenda.listarContactos();
+    Registros= objAgenda.listarContactos();
     document.querySelector('#cancelar').addEventListener('click', volverPagina);
     document.querySelector('#guardar').addEventListener('click', guardar);
     accionPantalla=parseInt(getParameterByName("accion",  window.location.href));
@@ -50,6 +50,9 @@ function cargarPantallaEditar(){
                                     break;
                             default :
                               tituloPantalla='Borrar Contacto';
+                              $('form input').prop('disabled', true);
+                            //  $('form input[type="email"]').prop('disabled', true);
+                            //  $('form input[type="tel"]').prop('disabled', true);
                               break;
                             };
 
@@ -63,8 +66,8 @@ function volverPagina(){
 function cargarDatos(){
 
   var param = getParameterByName("position",  window.location.href);
-  //var objAgenda = new Agenda();
-  var obj= objAgenda.listarContacto(param);
+  var objRegistro = new crearObjetoRegistroAgenda(null,null,null,null,param);
+  var obj= objAgenda.listarContacto(objRegistro);
       document.querySelector("#nombre").value=obj.name;
       document.querySelector("#apellido").value=obj.lastName;
       document.querySelector("#email").value=obj.email;
@@ -72,26 +75,57 @@ function cargarDatos(){
  };
 
  function guardar(){
+
+   if (salvarCambios()=== false){
+     volverPagina();
+     return;
+   }
+
    var accionPantalla=parseInt(getParameterByName("accion",  window.location.href));
    //var objAgenda = new Agenda();
 
+
+/*
+     objetoRegistro();
+   objreg.Nombre=document.querySelector("#nombre").value;
+   objreg.Apellido=document.querySelector("#apellido").value;
+   objreg.Telefono=document.querySelector("#telefono").value;
+   objreg.Email=document.querySelector("#email").value;*/
    if (accionPantalla ===1){
-      objAgenda.crearContacto(document.querySelector("#nombre").value,
-      document.querySelector("#apellido").value,
-      document.querySelector("#email").value,
-      document.querySelector("#telefono").value);
+     var objreg= new crearObjetoRegistroAgenda(
+                   document.querySelector("#nombre").value,
+                   document.querySelector("#apellido").value,
+                   document.querySelector("#email").value,
+                   document.querySelector("#telefono").value,
+                   null)
+      objAgenda.crearContacto(objreg);
    }
    else if (accionPantalla ===2){
-     objAgenda.editarContacto(
+     var objreg= new crearObjetoRegistroAgenda(
+                   document.querySelector("#nombre").value,
+                   document.querySelector("#apellido").value,
+                   document.querySelector("#email").value,
+                   document.querySelector("#telefono").value,
+                   getParameterByName("position",  window.location.href))
+     //objreg[fieldPosition]=getParameterByName("position",  window.location.href);
+     objAgenda.editarContacto(objreg);
+     /*
      getParameterByName("position",  window.location.href),
      document.querySelector("#nombre").value,
      document.querySelector("#apellido").value,
      document.querySelector("#email").value,
      document.querySelector("#telefono").value);
+     */
    }
    else {
-     objAgenda.borrarContacto(
-     getParameterByName("position",  window.location.href))
+     var objreg= new crearObjetoRegistroAgenda(
+                   document.querySelector("#nombre").value,
+                   document.querySelector("#apellido").value,
+                   document.querySelector("#email").value,
+                   document.querySelector("#telefono").value,
+                   getParameterByName("position",  window.location.href))
+      //objreg[fieldPosition]=getParameterByName("position",  window.location.href);
+     objAgenda.borrarContacto(objreg)
    }
 
    volverPagina();
@@ -106,3 +140,13 @@ function cargarDatos(){
      if (!results[2]) return '';
      return decodeURIComponent(results[2].replace(/\+/g, " "));
  }
+
+ function salvarCambios() {
+    var respuesta;
+    if (confirm("Desea salvar los cambios ?") == true) {
+        respuesta = true;
+    } else {
+        respuesta = false;
+    }
+    return respuesta;
+}
