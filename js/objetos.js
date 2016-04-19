@@ -59,5 +59,33 @@ function objetoRegistro() {
       phone = value;
     }
   });
+  
+/*  var ar = [];
+var obj= new objetoRegistro();
+obj.Apellido='Sanabria';
+obj.Nombre='Randall';
+obj.Telefono='2441-4126';
+obj.Email='1@a.com';
+
+ar.push(obj)
+ar.push(obj)
+
+    console.log(devuelveStringJSON(ar));
+*/
+function devuelveStringJSON(arregloObjetos){
+    var totalValores=''
+    var valores=''
+    arregloObjetos.forEach (function (objeto){
+                  valores='{'
+                  Object.getOwnPropertyNames(objeto).forEach(function(val, idx, array) {
+                                                            valores+=val + ' : ' + objeto[val]+', ';
+                                                          });
+                  valores+= '}'
+                  valores= valores.replace(', }','}')
+                  totalValores+=valores;
+    })
+    totalValores = totalValores.replace('}{','},{');
+    return totalValores;
+  };
 
 }
