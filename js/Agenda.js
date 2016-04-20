@@ -13,7 +13,7 @@ var Agenda = function() {
 
  function addContacts(objRegistro){
         var pos= findMaxPosition();
-        objRegistro[fieldPosition]=pos;
+        objRegistro.position=pos;
         ContactsArray.push(objRegistro);
         var acceso = new accesoDatos();
         acceso.guardarDatos(ContactsArray);
@@ -32,7 +32,7 @@ var Agenda = function() {
   function findMaxPosition(){
       var  result=-1;
       var maxlength=ContactsArray.length;
-      result= 1+(maxlength ===0 ? -1 : ContactsArray[maxlength-1][fieldPosition]);
+      result= 1+(maxlength ===0 ? -1 : ContactsArray[maxlength-1].position);
       return result;
     };
 
@@ -48,15 +48,15 @@ var Agenda = function() {
     };
 
     function updateContact(objRegistro){
-       var postmp = findPos(objRegistro[fieldPosition])
+       var postmp = findPos(objRegistro.position)
        if (postmp<0){
          throw new Error(message_recNotFound);
        };
        with (ContactsArray[postmp]) {
-         name=objRegistro[fieldName];
-         lastName=objRegistro[fieldLastName];
-         email=objRegistro[fieldEmail];
-         phone=objRegistro[fieldPhone];
+         ContactsArray[postmp].name=objRegistro.name;
+         ContactsArray[postmp].lastName=objRegistro.lastName;
+         ContactsArray[postmp].email=objRegistro.email;
+         ContactsArray[postmp].phone=objRegistro.phone;
        };
        var acceso = new accesoDatos();
        acceso.guardarDatos(ContactsArray);
@@ -93,7 +93,8 @@ var Agenda = function() {
       var acceso = new accesoDatos();
       var regs=acceso.listarTodosDatos();
       regs.forEach(function(item){
-        ContactsArray.push(item);
+        var objReg = new objetoRegistro(item.name,item.lastName,item.email,item.phone,item.position)
+        ContactsArray.push(objReg);
       });
             return ContactsArray;
     };

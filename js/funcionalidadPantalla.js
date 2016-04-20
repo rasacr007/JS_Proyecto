@@ -16,10 +16,10 @@ function cargarPantallaListar()
             "<td>"+item.phone+"</td>"+
             "<td>"+item.email+"</td>"+
             "<td>"+"<a href=edit.html?accion=2&position=" + item.position+">"
-            +"<img src=imgs/edit-24.ico alt=Editar title=Editar>"+"</a></td>"+
+            +"<img src=imgs/black_edit_24.ico alt=Editar title=Editar>"+"</a></td>"+
             "<td>"+
             "<a href=edit.html?accion=3&position=" + item.position+">"
-            +"<img src=imgs/delete-24.ico alt=Borrar title=Borrar>"+"</a></td>"+
+            +"<img src=imgs/black_delete_24.ico alt=Borrar title=Borrar>"+"</a></td>"+
             "</tr>";
       });
       x+="</tbody>";
@@ -66,7 +66,8 @@ function volverPagina(){
 function cargarDatos(){
 
   var param = getParameterByName("position",  window.location.href);
-  var objRegistro = new crearObjetoRegistroAgenda(null,null,null,null,param);
+  var objRegistro = new objetoRegistro();
+  objRegistro.position=param;
   var obj= objAgenda.listarContacto(objRegistro);
       document.querySelector("#nombre").value=obj.name;
       document.querySelector("#apellido").value=obj.lastName;
@@ -92,16 +93,15 @@ function cargarDatos(){
    objreg.Telefono=document.querySelector("#telefono").value;
    objreg.Email=document.querySelector("#email").value;*/
    if (accionPantalla ===1){
-     var objreg= new crearObjetoRegistroAgenda(
+     var objreg= new objetoRegistro(
                    document.querySelector("#nombre").value,
                    document.querySelector("#apellido").value,
                    document.querySelector("#email").value,
-                   document.querySelector("#telefono").value,
-                   null)
+                   document.querySelector("#telefono").value)
       objAgenda.crearContacto(objreg);
    }
    else if (accionPantalla ===2){
-     var objreg= new crearObjetoRegistroAgenda(
+     var objreg= new objetoRegistro(
                    document.querySelector("#nombre").value,
                    document.querySelector("#apellido").value,
                    document.querySelector("#email").value,
@@ -118,12 +118,13 @@ function cargarDatos(){
      */
    }
    else {
-     var objreg= new crearObjetoRegistroAgenda(
-                   document.querySelector("#nombre").value,
+     var objreg= new objetoRegistro();
+     objreg.position=getParameterByName("position",  window.location.href);
+      /*             document.querySelector("#nombre").value,
                    document.querySelector("#apellido").value,
                    document.querySelector("#email").value,
                    document.querySelector("#telefono").value,
-                   getParameterByName("position",  window.location.href))
+                 )*/
       //objreg[fieldPosition]=getParameterByName("position",  window.location.href);
      objAgenda.borrarContacto(objreg)
    }
