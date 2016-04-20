@@ -24,7 +24,7 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
   var position=null;
   var registro = [];
 */
-  Object.defineProperty(this, 'Posicion', {
+  Object.defineProperty(this, 'Position', {
     get: function() {
         return position;
     },
@@ -34,7 +34,7 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
     }
   });
 
-  Object.defineProperty(this, 'Nombre', {
+  Object.defineProperty(this, 'Name', {
     get: function() {
         return name;
     },
@@ -43,7 +43,7 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
     }
   });
 
-  Object.defineProperty(this, 'Apellido', {
+  Object.defineProperty(this, 'LastName', {
     get: function() {
         return lastName;
     },
@@ -60,7 +60,7 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
       email = value;
     }
   });
-  Object.defineProperty(this, 'Telefono', {
+  Object.defineProperty(this, 'Phone', {
     get: function() {
         return phone;
     },
