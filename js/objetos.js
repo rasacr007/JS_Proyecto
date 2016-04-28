@@ -1,30 +1,13 @@
 
-function crearObjetoRegistroAgenda(par_name, par_lastName, par_email,par_phone,par_position){
-    this.name= par_name;
-    this.lastName=par_lastName;
-    this.email=par_email;
-    this.phone=par_phone;
-    this.position=par_position;
-};
-
+/* Objeto que contendra la estructura del registro*/
 function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position) {
-  //initialize
-  //property: function(par_name, par_lastName, par_email,par_phone,par_position) {
+
     this.name= par_name;
     this.lastName=par_lastName;
     this.email=par_email;
     this.phone=par_phone;
     this.position=par_position;
 
-
-  // },
-/*  var name = null;
-  var lastName = null;
-  var email = null;
-  var phone = null;
-  var position=null;
-  var registro = [];
-*/
   Object.defineProperty(this, 'Position', {
     get: function() {
         return position;
@@ -75,18 +58,6 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
     }
   });
 
-/*  var ar = [];
-var obj= new objetoRegistro();
-obj.Apellido='Sanabria';
-obj.Nombre='Randall';
-obj.Telefono='2441-4126';
-obj.Email='1@a.com';
-
-ar.push(obj)
-ar.push(obj)
-
-    console.log(devuelveStringJSON(ar));
-*/
 function devuelveStringJSON(arregloObjetos){
     var totalValores=''
     var valores=''

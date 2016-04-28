@@ -3,14 +3,14 @@
 var Agenda = function() {
     var ContactsArray =[];
     var message_recNotFound ='Registro no encontrado';
-    var fieldName='name',
-        fieldLastName='lastName',
-        fieldPhone='phone',
-        fieldEmail='email',
-        fieldPosition='position'
+     var fieldPosition='position';
+    //fieldName='name',
+    //     fieldLastName='lastName',
+    //     fieldPhone='phone',
+    //     fieldEmail='email',
 
 
-
+/*Agregar el onjregistro al array y lo guarda al localstorge*/
  function addContacts(objRegistro){
         var pos= findMaxPosition();
         objRegistro.position=pos;
@@ -20,14 +20,6 @@ var Agenda = function() {
 
     };
 
-   /* function addContacts(name, lastName, email,phone){
-        var pos= findMaxPosition();
-        ContactsArray.push({position: pos, name:name,lastName:lastName, email:email, phone:phone});
-        var acceso = new accesoDatos();
-        acceso.guardarDatos(ContactsArray);
-
-    };
-*/
   /* Devuelve el maximo registro ingresado */
   function findMaxPosition(){
       var  result=-1;
@@ -47,6 +39,7 @@ var Agenda = function() {
         return result;
     };
 
+    /*Actualiza el registro en el array y Actualiza el localstorge*/
     function updateContact(objRegistro){
        var postmp = findPos(objRegistro.position)
        if (postmp<0){
@@ -62,23 +55,8 @@ var Agenda = function() {
        acceso.guardarDatos(ContactsArray);
 
     };
-/*
-    function updateContact(par_pos,par_name, par_lastName,par_email,par_phone){
-       var postmp = findPos(par_pos);
-       if (postmp<0){
-         throw new Error(message_recNotFound);
-       };
-       with (ContactsArray[postmp]) {
-         name=par_name;
-         lastName=par_lastName;
-         email=par_email;
-         phone=par_phone;
-       };
-       var acceso = new accesoDatos();
-       acceso.guardarDatos(ContactsArray);
 
-    };
-*/
+    /*borra el registro del array y Actualiza el localstorge*/
     function deleteContact(registroObjeto){
       var postmp = findPos(registroObjeto[fieldPosition]);
       if (postmp<0){
@@ -89,6 +67,7 @@ var Agenda = function() {
       acceso.guardarDatos(ContactsArray);
      };
 
+    /*lista todos los contactos*/
     function listContacts(){
       var acceso = new accesoDatos();
       var regs=acceso.listarTodosDatos();
@@ -99,6 +78,7 @@ var Agenda = function() {
             return ContactsArray;
     };
 
+    /*Lista registro por el indice*/
     function listContact(registroObjeto){
       var postmp = findPos(registroObjeto[fieldPosition]);
       if (postmp<0){
@@ -121,29 +101,15 @@ var Agenda = function() {
      editarContacto(registroObjeto){
         updateContact(registroObjeto);
      },
-    /*
-    crearContacto: function (name, lastName, email,phone){
-        addContacts(name,lastName, email,phone);
-    },
-
-     editarContacto(position, name,lastName, email,phone){
-        updateContact(position,name, lastName, email,phone);
-     },*/
 
      borrarContacto(registroObjeto){
         deleteContact(registroObjeto);
      },
      cargarDatosPrueba(){
-
            addContacts("Randall","Sanabria","sanabria7@hotmail.com","8801-9698");
            addContacts("Juan","Perez","perez@hotmail.com","8801-9698");
            addContacts("Carlos","Mena","mena@hotmail.com","8801-9698");
            addContacts("Raul","Mora","mora@hotmail.com","8801-9698");
-
-
      }
-
-
-
   };
 };
