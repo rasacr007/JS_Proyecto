@@ -16,6 +16,7 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
     this.phone=par_phone;
     this.position=par_position;
 
+
   // },
 /*  var name = null;
   var lastName = null;
@@ -66,6 +67,11 @@ function objetoRegistro(par_name, par_lastName, par_email,par_phone,par_position
     },
     set: function(value) {
       phone = value;
+    }
+  });
+  Object.defineProperty(this, 'FullName', {
+    get: function() {
+        return this.name +' ' +this.lastName;
     }
   });
 

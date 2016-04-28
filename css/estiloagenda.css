@@ -13,8 +13,8 @@
 }
 /* Set black background color, white text and some padding */
 footer {
-  background-color: #000;
-  color: white;
+  background-color: 	#FFFFFF;/*#000;*/
+  color: red;
   padding: 15px;
 }
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -35,3 +35,21 @@ footer {
     background: #ff0000;
     color: #fff;
  }
+
+/*
+.table-fixed thead {
+width: 97%;
+}
+.table-fixed tbody {
+height: 230px;
+overflow-y: auto;
+width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+float: left;
+border-bottom-width: 0;
+}
+*/
