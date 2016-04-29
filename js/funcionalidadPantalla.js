@@ -37,10 +37,11 @@ function guardarRegistro(evento){
            objAgenda.borrarContacto(objreg);
          };
         volverPagina();
-        return 1;
+        return true;
 
    } catch (e) {
      mostrarMensajeError(e);
+     return false;
    }
 };
 
@@ -55,33 +56,33 @@ function cargarPantallaListar() {
 
 
       var Registros=[];
-      var y='';
-      // var x ="<thead><tr><th class=col-xs-2 data-sortable=true>Nombre</th>"+
-      //         "<th class=col-xs-2>Telefono</th>"+
-      //         "<th class=col-xs-2>Email</th>"+
-      //       //  "<th class=col-xs-2>.</th>"+
-      //       //"<th class=col-xs-2>.</th>"+
-      //         "</tr></thead>"
-        var x ="<thead><tr><th class=col-xs-2 data-sortable=true>Nombre</th><th class=col-xs-2>Apellido</th><th class=col-xs-2>Telefono</th><th class=col-xs-2>Email</th><th class=col-xs-2></th><th class=col-xs-2></th></tr></thead>"
+      var x ="<thead><tr><th class=col-xs-2 data-sortable=true>Nombre</th>"+
+              "<th class=col-xs-2>Telefono</th>"+
+              "<th class=col-xs-2>Email</th>"+
+              "<th class=col-xs-2></th>"+
+            "<th class=col-xs-2></th>"+
+              "</tr></thead>"
+
       x+="<tbody>";
       try {
 
             //Trae todos los Contactos
             Registros= objAgenda.listarContactos();
              Registros.forEach( function (item){
-                   y+="<tr>" +
-                        "<td class=col-xs-2>"+item.name+"</td>"+
-                        "<td class=col-xs-2>"+item.lastName+"</td>"+
+                   x+="<tr>" +
+                        "<td class=col-xs-2>"+item.FullName+"</td>"+
+                        //"<td class=col-xs-2>"+item.lastName+"</td>"+
                         "<td class=col-xs-2>"+item.phone+"</td>"+
                         "<td class=col-xs-2>"+item.email+"</td>"+
-                        "<td class=col-xs-2>"+"<a href=Edit.html?accion=2&position=" + item.position+">"
+                        "<td class=col-xs-2 align=center>"+"<a href=Edit.html?accion=2&position=" + item.position+">"
                         +"<img src=imgs/edit.ico alt=Editar title=Editar>"+"</a></td>"+
-                        "<td class=col-xs-2>"+"<a href=Edit.html?accion=3&position=" + item.position+">"
+                        "<td class=col-xs-2 align=center>"+"<a href=Edit.html?accion=3&position=" + item.position+">"
                         +"<img src=imgs/delete.ico alt=Borrar title=Borrar>"+"</a></td>"+
+
                   "</tr>";
 
             });
-            x=x+y;
+
             x+="</tbody>";
             document.querySelector("table").innerHTML = x;
             document.querySelector("#nuevoContacto").addEventListener("click",function () {
