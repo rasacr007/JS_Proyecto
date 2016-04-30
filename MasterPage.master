@@ -1,8 +1,0 @@
-<% @ Page Language="VB" MasterPageFile="~/MasterPage.master" Title="Content Page 1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
-    Main content.
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="Footer" Runat="Server" >
-    Footer content.
-</asp:content>
