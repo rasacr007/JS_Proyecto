@@ -71,10 +71,12 @@ var Agenda = function() {
     function listContacts(){
       var acceso = new accesoDatos();
       var regs=acceso.listarTodosDatos();
-      regs.forEach(function(item){
-        var objReg = new objetoRegistro(item.name,item.lastName,item.email,item.phone,item.position)
-        ContactsArray.push(objReg);
-      });
+      if (regs != null) {
+              regs.forEach(function(item){
+                var objReg = new objetoRegistro(item.name,item.lastName,item.email,item.phone,item.position)
+                ContactsArray.push(objReg);
+              });
+      };
             return ContactsArray;
     };
 
